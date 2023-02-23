@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import { Routes, Route, Outlet, Link } from "react-router-dom"; 
+import Counter from './components/Counter/Counter';
+import RandomUser from './components/RandomUser/RandomUser';
 import './App.css';
+import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul className="menu">
+        <li><Link to="/counter">Counter Exercise</Link></li>
+        <li><Link to="/random-user">Random User Exercise</Link></li>
+      </ul>
+      <Routes>
+        <Route path="/">
+          <Route path="/counter" element={<Counter />}></Route>
+          <Route path="/random-user" element={<RandomUser />}></Route>
+        </Route>
+      </Routes>
     </div>
   );
 }

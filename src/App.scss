@@ -1,0 +1,9 @@
+.menu {
+  list-style: none;
+  text-align: left;
+  display: flex;
+
+  > li {
+    margin-right: 1rem;
+  }
+}
