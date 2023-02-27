@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './random-user-int.scss';
 
 // column sort
@@ -17,22 +17,21 @@ const SORT_VALUES = {
 };
 
 export default function RandomUserInt () {
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const [locations, setLocations] = useState([]);
   const [headers, setHeaders] = useState([]);
   const [sortOrder, setSortOrder] = useState(SORT_VALUES.DEFAULT);
-  const [filteredLocations, setFilteredLocations] = useState([]);
-
-  useEffect(() => {
-    fetchData();
-    console.log('useEffect');
-  }, []);
+  const defaultLocs = useRef();
 
   async function fetchData() {
     return await axios.get('https://randomuser.me/api/?results=20')
       .then(response => {
+        const flat = defaultLocs.current = flattenLocations(response.data.results);
         setHeaders(Object.keys(flattenObject(response.data.results[0].location)));
-        console.log(response.data.results);
-        setLocations(flattenLocations(response.data.results));
+        setLocations(flat);
       })
       .catch(err => console.error(err));
   }
@@ -43,7 +42,6 @@ export default function RandomUserInt () {
     for (const item in obj) {
       if ((typeof obj[item] === 'object' && !Array.isArray(obj[item]))) {
         const temp = flattenObject(obj[item]);
-        
         for (const innerItem in temp) {
           result[item + '.' + innerItem] = temp[innerItem]   
         }
@@ -65,36 +63,28 @@ export default function RandomUserInt () {
 
   function handleColumnSort(ev) {
     const col = ev.target.innerText.toString();
-    const colType = typeof locations[0][col];
-    // console.log(colType);
-    let locs = locations;
+    let locs = locations.slice();
 
-    if (sortOrder === SORT_VALUES.DEFAULT || sortOrder == SORT_VALUES.ASC) {
-      locs.sort((a, b) => {
-        if (a[col] < b[col]) {
-          return -1;
-        }
-        if (a[col] > b[col]) {
-          return 1;
-        }
-        return 0;
-      });
-      setSortOrder(SORT_VALUES.DESC);
-    } else {
-      locs.sort((a, b) => {
-        if (a[col] < b[col]) {
-          return 1;
-        }
-        if (a[col] > b[col]) {
-          return -1;
-        }
-        return 0;
-      });
-
-      setSortOrder(SORT_VALUES.ASC);
+    switch(sortOrder) {
+      case sortOrder === SORT_VALUES.DEFAULT:
+        locs.sort((a, b) => {
+          if (a[col] < b[col]) return -1;
+          if (a[col] > b[col]) return 1;
+          return 0;
+        });
+        setSortOrder(SORT_VALUES.ASC);
+      case sortOrder === SORT_VALUES.ASC:
+        locs.sort((a, b) => {
+          if (a[col] < b[col]) return 1;
+          if (a[col] > b[col]) return -1;
+          return 0;
+        });
+        setSortOrder(SORT_VALUES.DESC);
+      default:
+        locs = defaultLocs.current;
+        setSortOrder(SORT_VALUES.DEFAULT);
     }
 
-    console.log(locs);
     setLocations(locs);
   }
 
