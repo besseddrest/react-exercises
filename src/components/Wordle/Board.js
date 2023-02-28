@@ -24,7 +24,6 @@ export default function Board() {
     isCorrect: false,
     isPresent: false,
   }));
-  const [submission, setSubmission] = useState('');
   const [didSubmit, setDidSubmit] = useState(true);
   const letterCount = useRef(0);
   const [correctCount, setCorrectCount] = useState(0); // ToDo: clear board
