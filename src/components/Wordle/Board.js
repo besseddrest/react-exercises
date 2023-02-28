@@ -27,7 +27,7 @@ export default function Board() {
   const [submission, setSubmission] = useState('');
   const [didSubmit, setDidSubmit] = useState(true);
   const letterCount = useRef(0);
-  const [correctCount, setCorrectCount] = useState(0);
+  const [correctCount, setCorrectCount] = useState(0); // ToDo: clear board
   const [didWin, setDidWin] = useState(false);
 
 
@@ -98,7 +98,7 @@ export default function Board() {
   return (
     <>
       {
-        // didWin ? <div className="overlay--win">You Win!</div> : null
+        didWin ? <div className="overlay--win">You Win!</div> : null
       }
       <div className="word__board">
         {
