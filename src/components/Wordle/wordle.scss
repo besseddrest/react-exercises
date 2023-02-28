@@ -3,6 +3,7 @@
 }
 .word {
   &__board {
+    padding-top: 3rem;
     z-index: 1;
     margin: 0 auto;
     width: calc((54px * 5) + 40px);

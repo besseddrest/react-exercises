@@ -1,7 +1,24 @@
-.menu {
-  list-style: none;
-  text-align: left;
+.App {
   display: flex;
+  flex-wrap: none;
+}
+
+aside {
+  padding-left: 1rem;
+  text-align: left;
+  flex: 1 1 15%;
+  min-width: calc(15% + 1rem);    
+  background: lightgray;
+  height: 100vh;
+}
+
+main {
+  flex: 1 1 85%; 
+}
+.menu {
+  margin-left: 0;
+  text-align: left;
+  font-size: .9rem;
 
   > li {
     margin-right: 1rem;

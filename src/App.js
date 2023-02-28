@@ -9,20 +9,26 @@ import './App.scss';
 function App() {
   return (
     <div className="App">
-      <ul className="menu">
-        <li><Link to="/counter">Counter Exercise</Link></li>
-        <li><Link to="/random-user">Random User Exercise</Link></li>
-        <li><Link to="/random-user-int">Random User (Intermediate)</Link></li>
-        <li><Link to="/wordle">Wordle</Link></li>
-      </ul>
-      <Routes>
-        <Route path="/">
-          <Route path="/counter" element={<Counter />}></Route>
-          <Route path="/random-user" element={<RandomUser />}></Route>
-          <Route path="/random-user-int" element={<RandomUserInt />}></Route>
-          <Route path="/wordle" element={<Board />}></Route>
-        </Route>
-      </Routes>
+      <aside>
+        <h3>Exercises</h3>
+        <ul className="menu">
+          <li><Link to="/counter">Counter Exercise</Link></li>
+          <li><Link to="/random-user">Random User Exercise</Link></li>
+          <li><Link to="/random-user-int">Random User (Intermediate)</Link></li>
+          <li><Link to="/wordle">Wordle</Link></li>
+        </ul>
+      </aside>
+      <main>
+        <Routes>  
+          <Route path="/">
+            <Route path="/counter" element={<Counter />}></Route>
+            <Route path="/random-user" element={<RandomUser />}></Route>
+            <Route path="/random-user-int" element={<RandomUserInt />}></Route>
+            <Route path="/wordle" element={<Board />}></Route>
+          </Route>
+        </Routes>
+      </main>
+
     </div>
   );
 }

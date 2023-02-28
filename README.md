@@ -1,6 +1,12 @@
 # React Exercises
 An app that contains links to React Interview Exercises found on YouTube
 
+Details:
+* **Counter** - a simple, typical Counter exercise (increment, decrement)
+* **Random User** - makes an API to display a random single user, and append additional users with the click of a button
+* **Random User Intermediate** - makes an API call to the same URL above and returns a list of location results in a table, with sort functionality. TBA: search
+* **Wordle** - re-creation of the popular Wordle game 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
