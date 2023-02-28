@@ -37,6 +37,7 @@ export default function Board() {
   }, [typed, didSubmit]);
 
   const handleKeyPress = (ev) => {
+    // ToDo: handle Enter and Delete
     if ((ev.keyCode >= 65 && ev.keyCode <= 90) || (ev.keyCode >= 97 && ev.keyCode <= 122)) {
       if (letterCount.current < 5 && didSubmit == true) {
         letterCount.current++;
