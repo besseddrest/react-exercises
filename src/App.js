@@ -2,6 +2,7 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Counter from './components/Counter/Counter';
 import RandomUser from './components/RandomUser/RandomUser';
 import RandomUserInt from './components/RandomUserInt/RandomUserInt';
+import Board from './components/Wordle/Board';
 import './App.css';
 import './App.scss';
 
@@ -12,12 +13,14 @@ function App() {
         <li><Link to="/counter">Counter Exercise</Link></li>
         <li><Link to="/random-user">Random User Exercise</Link></li>
         <li><Link to="/random-user-int">Random User (Intermediate)</Link></li>
+        <li><Link to="/wordle">Wordle</Link></li>
       </ul>
       <Routes>
         <Route path="/">
           <Route path="/counter" element={<Counter />}></Route>
           <Route path="/random-user" element={<RandomUser />}></Route>
           <Route path="/random-user-int" element={<RandomUserInt />}></Route>
+          <Route path="/wordle" element={<Board />}></Route>
         </Route>
       </Routes>
     </div>

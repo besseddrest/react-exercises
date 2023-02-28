@@ -1,0 +1,51 @@
+.App {
+  position: relative;
+}
+.word {
+  &__board {
+    z-index: 1;
+    margin: 0 auto;
+    width: calc((54px * 5) + 40px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  &__tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    flex: 0 0 20%; // 5-up  
+    border: 2px solid grey;
+    max-width: 50px;
+    height: 50px;
+
+    &--correct {
+      color: white;
+      border-color: greenyellow;
+      background-color: greenyellow;
+    }
+
+    &--present {
+      color: white;
+      border-color: orange;
+      background-color: orange;
+    }
+  }
+}
+
+.overlay--win {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba($color: #000000, $alpha: 0.5);
+  z-index: 2;
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+}
