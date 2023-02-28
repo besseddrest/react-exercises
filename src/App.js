@@ -12,8 +12,8 @@ function App() {
       <aside>
         <h3>Exercises</h3>
         <ul className="menu">
-          <li><Link to="/counter">Counter Exercise</Link></li>
-          <li><Link to="/random-user">Random User Exercise</Link></li>
+          <li><Link to="/counter">Counter</Link></li>
+          <li><Link to="/random-user">Random User</Link></li>
           <li><Link to="/random-user-int">Random User (Intermediate)</Link></li>
           <li><Link to="/wordle">Wordle</Link></li>
         </ul>
