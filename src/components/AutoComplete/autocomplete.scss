@@ -1,0 +1,35 @@
+$default-width: 300px;
+
+.autocomplete {
+  &__wrapper {
+    width: $default-width;
+    margin: 3rem auto;
+  }
+
+  &__input {
+    width: $default-width;
+  }
+
+  &__list {
+    border: 1px solid #eee;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    list-style: none;
+    width: calc($default-width + 6px);
+    
+    > li {
+      padding: 3px;
+      margin: 0;
+
+      &:hover {
+        background-color: lightgrey;
+        cursor: pointer;
+      }
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+}

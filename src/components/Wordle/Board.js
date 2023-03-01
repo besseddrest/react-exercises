@@ -31,28 +31,47 @@ export default function Board() {
 
 
   useEffect(() => {
-    window.addEventListener('keypress', handleKeyPress);
-    return () => window.removeEventListener('keypress', handleKeyPress);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [typed, didSubmit]);
 
-  const handleKeyPress = (ev) => {
-    // ToDo: handle Enter and Delete
+  const handleKeyDown = (ev) => {
+    if (ev.key === "Enter") {
+      handleSubmit();
+      return;
+    }
+
+    if (ev.key === "Backspace") {
+      processKey('');
+      letterCount.current = letterCount.current - 1;
+      return;
+    }
+    
     if ((ev.keyCode >= 65 && ev.keyCode <= 90) || (ev.keyCode >= 97 && ev.keyCode <= 122)) {
       if (letterCount.current < 5 && didSubmit == true) {
         letterCount.current++;
-        addLetter(ev.key.toUpperCase());
+        processKey(ev.key.toUpperCase());
       }
     }
   }
 
-  const addLetter = (val) => {
+  const processKey = (val) => {
     const temp = typed.slice();
     const emptyIndex = temp.findIndex(item => item.value == '');
-    temp[emptyIndex] = {
-      value: val,
-      isCorrect: false,
-      isPreset: false,
-    };
+
+    if (val == '') {
+      temp[emptyIndex - 1] = {
+        value: val,
+        isCorrect: false,
+        isPreset: false,
+      };
+    } else {
+      temp[emptyIndex] = {
+        value: val,
+        isCorrect: false,
+        isPreset: false,
+      };
+    }
     setTyped(temp);
   }
 
